@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en-us">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Hangman Streetfighter</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+        <!--        Bootstrap v4-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">    
+
+        <!--style sheet-->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <!-- Bootstrap v3-->
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+
+        <!--implementing jQuery-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+
+
+    </head>
+
+    <body>
+
+
+        <div id="main-container" class="container">
+
+            <div class="row justify-content-center">
+                <h1>Hangeman</h1>
+            </div>
+            <!imag>
+            <div class="row justify-content-center">
+                <img src="images/sfv-logo.png" class="auth-image img-fluid rounded m-md-3" alt="Matt Gohr">     
+            </div>
+
+            <!main content>
+            <div class="row justify-content-center">
+
+                <!right picture>
+                <div class="col-4 border2" id="result-picture-section">
+                    <div class="col-md-11 justify-content-center logo">
+
+                        <img src="images/Chunrender.png" class="player-image img-fluid rounded m-md-3">
+
+                    </div>
+                </div>
+                <div class="col-4 border2" id="hangman-main-section">
+                    <div class="row">
+                        <div class="game-container col-12" id="hangman-section">
+                            <p class="text-center">Press any key to get start guessing!</p>
+
+                            <p class="text-center">Wins: <span id="wins">0</span></p>
+
+                            <p class="text-center">Current Word</p>
+
+                            <p class="text-center" id="guess-word-placeholder">_ _ _ _ _ _ _ _</p>
+
+                            <p class="text-center">Number of Guesses Remaining</p>
+
+                            <p class="text-center" id="guesses-remaining">15</p>
+
+                            <p class="text-center">Letters Already Guessed</p>
+
+                            <p class="text-center" id="letters-guessed">_</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+            //create player array: you can add as many words to the list as you want.
+            var words = ["Dhalsim", "Ryu", "Ken Masters", "Akuma", "Chun Li"];
+
+            //wins
+            var wins = document.getElementById("wins");
+                
+                //change innter html to number
+//                var wins.innerHTML
+                
+            //words guessed
+            var guessWord = document.getElementById("guess-word-placeholder");
+
+            //letters guessed
+            var lettersGuessed = document.getElementById("letters-guessed");
+            
+            //random word in array index
+            var randWord = Math.floor(Math.random() * words.length) + 0;
+            
+            //hangman view word
+            var handManViewWord = "";
+            
+//            words[randWord].replace(words[randWord].charAt(0), "z")
+            
+            //guesses variable
+            var guessCount = 0;
+            
+            console.log(randWord);
+            
+            console.log("word: " + words[randWord]);
+            
+            console.log(handManViewWord);
+            
+                        
+            function reWriteCurrentWord(){
+                //loop through word and replace each letter with underscore
+                for (var i = 0; i < words[randWord].length; i++){
+                    
+                    handManViewWord = words[randWord].replace(words[randWord].charAt(i), "_"); 
+                    
+                    console.log("letter: " + words[randWord].charAt(i));
+                    
+                }
+                                
+            }
+            
+//            function reWriteCurrentWord(){
+//               console.log("p");                                
+//            }
+            
+            reWriteCurrentWord();
+            console.log(handManViewWord);
+            
+            function addWins(){
+                
+            }
+
+            //WHEN KEY IS PRESSED -------------------------------------------------------------------
+            document.onkeyup = function(event) {
+
+                // Captures the key press, converts it to lowercase, and saves it to a variable.
+                var letter = String.fromCharCode(event.keyCode).toLowerCase();            
+                
+                var findLetter = words[randWord].toLowerCase().search(letter);
+                
+                console.log(findLetter);
+                
+                if (findLetter > 0){
+                    
+                    //add
+                    
+                }
+
+                // If the letter is h, run the following functions/methods.
+                if (letter === "h") {
+                    
+                }
+
+            }
+
+                //generate current word cound on first game
+
+                //check to see if letter is in string
+
+//
+//                targetDiv.innerHTML = "Hello friends!";
+//                var newDiv = document.createElement("div");
+//                newDiv.innerHTML = "A pleasure to meet you!";
+//
+//                targetDiv.appendChild(newDiv);
+//
+//                // We then apply that CSS to our newDiv.
+//                newDiv.setAttribute("class", "fancy");
+
+        </script>
+    </body>
+
+</html>

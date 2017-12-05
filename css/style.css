@@ -1,0 +1,27 @@
+.border2 {
+    border-style: dashed;
+    border-color: coral;
+    
+}
+
+#hangman-main-section {
+    border-left: none;
+    
+}
+
+.container{
+    min-height: 100vh;
+    padding-bottom: 15vh;
+}
+
+img.player-image {
+    height: 30vh;
+    width: 100vw;
+}
+
+.game-container, .logo{
+    min-height: 60vh;
+    padding-top: 30px;
+}
+
+
