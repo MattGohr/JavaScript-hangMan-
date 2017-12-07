@@ -57,7 +57,7 @@
 
                             <p class="text-center">Current Word</p>
 
-                            <p class="text-center" id="guess-word-placeholder">_ _ _ _ _ _ _ _</p>
+                            <p class="text-center" id="hangman-word-placeholder">_ _ _ _ _ _ _ _</p>
 
                             <p class="text-center">Number of Guesses Remaining</p>
 
@@ -76,97 +76,164 @@
         <script>
 
             //create player array: you can add as many words to the list as you want.
-            var words = ["Dhalsim", "Ryu", "Ken Masters", "Akuma", "Chun Li"];
+            var words = ["dhalsim", "dyu", "ken masters", "akuma", "chun li"];
 
             //wins
             var wins = document.getElementById("wins");
-                
-                //change innter html to number
-//                var wins.innerHTML
-                
+
+            //change innter html to number
+            //                var wins.innerHTML
+
             //words guessed
             var guessWord = document.getElementById("guess-word-placeholder");
 
             //letters guessed
             var lettersGuessed = document.getElementById("letters-guessed");
-            
+
             //random word in array index
-            var randWord = Math.floor(Math.random() * words.length) + 0;
-            
+            //            var randWord = Math.floor(Math.random() * words.length) + 0;
+            var randWord = 0;
+
             //hangman view word
-            var handManViewWord = "";
-            
-//            words[randWord].replace(words[randWord].charAt(0), "z")
-            
+            var hangManViewWord = [];
+
             //guesses variable
-            var guessCount = 0;
-            
-            console.log(randWord);
-            
-            console.log("word: " + words[randWord]);
-            
-            console.log(handManViewWord);
-            
-                        
-            function reWriteCurrentWord(){
-                //loop through word and replace each letter with underscore
-                for (var i = 0; i < words[randWord].length; i++){
-                    
-                    handManViewWord = words[randWord].replace(words[randWord].charAt(i), "_"); 
-                    
-                    console.log("letter: " + words[randWord].charAt(i));
-                    
+            var guessLeft = 10;
+
+            //correct letters log variable
+            var correctLetters = [];
+
+            //incorrect guesses
+            var incorrectLetters = [];
+
+
+            //hide hangman word
+            function hideHangman(){
+
+                //add same number of dahses as there are words
+                for(var i = 0; i < words[randWord].length; i++){
+
+                    //load dashes                    
+                    hangManViewWord[i] = "_ ";
+
+                    //print word for testing
+                    //                    console.log(hangManViewWord);
+
                 }
-                                
+
+                //insert into html
+
             }
-            
-//            function reWriteCurrentWord(){
-//               console.log("p");                                
-//            }
-            
-            reWriteCurrentWord();
-            console.log(handManViewWord);
-            
-            function addWins(){
-                
+
+            //comnine elements on the same line
+            function combineArraySameLine(arg1){
+
+                var complete = ""
+
+                //loop through each index and print to
+                for (var i = 0; i < arg1.length; i++){
+
+                    complete = complete + arg1[i];
+
+                }
+                return complete;
+
             }
+
+            //rewrite hangeman
+            function reWriteHangMan(letterGuessed){
+
+                //check to see if nothing is passed in
+                if (typeof letterGuessed !== "undefined"){
+
+                    //search for letter index in original word 
+                    var i = words[randWord].indexOf(letterGuessed);
+
+                    //replace 
+                    hangManViewWord[i] = letterGuessed + " ";
+
+                }
+            }
+
+            //add wins 
+            function printWins(){
+
+            }
+
+            //load hangman "_"
+            hideHangman();
 
             //WHEN KEY IS PRESSED -------------------------------------------------------------------
             document.onkeyup = function(event) {
 
                 // Captures the key press, converts it to lowercase, and saves it to a variable.
-                var letter = String.fromCharCode(event.keyCode).toLowerCase();            
-                
+                var letter = String.fromCharCode(event.keyCode).toLowerCase();
+
+                console.log("letter: "+ letter);
+
                 var findLetter = words[randWord].toLowerCase().search(letter);
-                
+
                 console.log(findLetter);
-                
-                if (findLetter > 0){
-                    
-                    //add
-                    
+
+                //check to see if true
+                if (findLetter >= 0){
+
+                    //add to hangman
+                    reWriteHangMan(letter);
+
+                    //add correct letter guess
+                    correctLetters[correctLetters.length] = letter;                 
+
+                    //print new hangman array
+                    var hangeManDiv = document.getElementById("hangman-word-placeholder");
+                    hangeManDiv.innerHTML = combineArraySameLine(hangManViewWord);
+
+
                 }
 
-                // If the letter is h, run the following functions/methods.
-                if (letter === "h") {
+                //if incorrect
+                if (findLetter < 0){
+
+                    //log incorrect letters
+                    incorrectLetters[incorrectLetters.length] = letter;
+
+                    //display incorrect letters guessed
+                    var correctGuessDiv = document.getElementById("letters-guessed");
+                    correctGuessDiv.innerHTML = combineArraySameLine(incorrectLetters);
+
+                    //decrease letters guessed
+                    guessLeft = guessLeft - 1;
+                    var guessCountDiv = document.getElementById("guesses-remaining");
+                    guessCountDiv.innerHTML = guessLeft;
+
+
+                }
+                
+                //Win 
+                if(correctLetters.length === words[randWord]){
+                    
+                    //log win
+                    
+                    //restart
+                                        
                     
                 }
 
             }
 
-                //generate current word cound on first game
+            //generate current word cound on first game
 
-                //check to see if letter is in string
+            //check to see if letter is in string
 
-//
-//                targetDiv.innerHTML = "Hello friends!";
-//                var newDiv = document.createElement("div");
-//                newDiv.innerHTML = "A pleasure to meet you!";
-//
-//                targetDiv.appendChild(newDiv);
-//
-//                // We then apply that CSS to our newDiv.
-//                newDiv.setAttribute("class", "fancy");
+            //
+            //                targetDiv.innerHTML = "Hello friends!";
+            //                var newDiv = document.createElement("div");
+            //                newDiv.innerHTML = "A pleasure to meet you!";
+            //
+            //                targetDiv.appendChild(newDiv);
+            //
+            //                // We then apply that CSS to our newDiv.
+            //                newDiv.setAttribute("class", "fancy");
 
         </script>
     </body>
