@@ -101,7 +101,12 @@
             var guessLeft = 15;
 
             //correct letters log variable
-            var correctLetters = "";
+            var correctLetters = {
+                
+            };
+            var correctLetters = "";              
+            
+            
 
             //incorrect guesses
             var incorrectLetters = "";
@@ -118,6 +123,7 @@
 
             //hide hangman word
             function hideHangman(){
+                hangManViewWord = [];
 
                 //add same number of dahses as there are words
                 for(var i = 0; i < words[randWord].length; i++){
@@ -192,6 +198,7 @@
                 }
 
                 else {
+                    
                     //check to see if true
                     if (findLetter >= 0){
 
@@ -199,10 +206,9 @@
                         reWriteHangMan(letter);
 
                         //add correct letter guess
-                        letterBank = letterBank + letter;                 
+                        correctLetters = correctLetters + letter;                 
 
                         //print new hangman array
-
                         hangeManDiv.innerHTML = combineArraySameLine(hangManViewWord);
 
 
@@ -231,7 +237,7 @@
 
 
                 //Win 
-                if(letterBank.length === words[randWord].length){
+                if(correctLetters.length === words[randWord].length){
 
                     //add wins
                     wins++
@@ -240,7 +246,7 @@
                     var winCountDiv = document.getElementById("wins");
                     winCountDiv.innerHTML = wins;
 
-                    //restart
+                    //restart hangman
                     hangeManDiv.innerHTML = "";
                     randWord = Math.floor(Math.random() * words.length) + 0;
                     hideHangman();
@@ -271,10 +277,10 @@
                     //new word
                     hangeManDiv.innerHTML = combineArraySameLine(hangManViewWord);
 
-                    //set letters to ""
-                    correctLetters = "", incorrectLetters = "";
-
-                    //reset guesses
+                    //set letters to ""                
+                    correctLetters = "", incorrectLetters = "", letterBank = "";
+                    
+                    //reset letters guessed
                     guessLeft = 15;
                     guessCountDiv.innerHTML = guessLeft;
 
