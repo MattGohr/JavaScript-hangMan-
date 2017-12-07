@@ -76,7 +76,7 @@
         <script>
 
             //create player array: you can add as many words to the list as you want.
-            var words = ["dhalsim", "dyu", "ken masters", "akuma", "chun li"];
+            var words = ["dhalsim", "ryu", "guile", "akuma", "sagat"];
 
             //wins
             var wins = document.getElementById("wins");
@@ -91,20 +91,29 @@
             var lettersGuessed = document.getElementById("letters-guessed");
 
             //random word in array index
-            //            var randWord = Math.floor(Math.random() * words.length) + 0;
-            var randWord = 0;
+            var randWord = Math.floor(Math.random() * words.length) + 0;
+            //            var randWord = 0;
 
             //hangman view word
             var hangManViewWord = [];
 
             //guesses variable
-            var guessLeft = 10;
+            var guessLeft = 15;
 
             //correct letters log variable
-            var correctLetters = [];
+            var correctLetters = "";
 
             //incorrect guesses
-            var incorrectLetters = [];
+            var incorrectLetters = "";
+            var letterBank = "";
+
+            //wins
+            var wins = 0;
+
+            //divs
+            var hangeManDiv = document.getElementById("hangman-word-placeholder");
+            var correctGuessDiv = document.getElementById("letters-guessed");
+            var guessCountDiv = document.getElementById("guesses-remaining");
 
 
             //hide hangman word
@@ -122,6 +131,7 @@
                 }
 
                 //insert into html
+                hangeManDiv.innerHTML = combineArraySameLine(hangManViewWord);
 
             }
 
@@ -169,55 +179,109 @@
                 // Captures the key press, converts it to lowercase, and saves it to a variable.
                 var letter = String.fromCharCode(event.keyCode).toLowerCase();
 
-                console.log("letter: "+ letter);
+//                console.log("letter: "+ letter);
 
                 var findLetter = words[randWord].toLowerCase().search(letter);
 
-                console.log(findLetter);
+//                console.log(findLetter);
 
-                //check to see if true
-                if (findLetter >= 0){
+                var wrongLetterCheck = letterBank.toLowerCase().search(letter);
 
-                    //add to hangman
-                    reWriteHangMan(letter);
+                if ( wrongLetterCheck >= 0 ){
+                    //skip
+                }
 
-                    //add correct letter guess
-                    correctLetters[correctLetters.length] = letter;                 
+                else {
+                    //check to see if true
+                    if (findLetter >= 0){
 
-                    //print new hangman array
-                    var hangeManDiv = document.getElementById("hangman-word-placeholder");
+                        //add to hangman
+                        reWriteHangMan(letter);
+
+                        //add correct letter guess
+                        letterBank = letterBank + letter;                 
+
+                        //print new hangman array
+
+                        hangeManDiv.innerHTML = combineArraySameLine(hangManViewWord);
+
+
+                    }
+
+                    //if incorrect
+                    if (findLetter < 0){
+
+                        //log incorrect letters
+                        incorrectLetters = incorrectLetters + letter;
+                        letterBank = letterBank + letter;
+
+                        //display incorrect letters guessed
+
+                        correctGuessDiv.innerHTML = combineArraySameLine(incorrectLetters);
+
+                        //decrease letters guessed
+                        guessLeft = guessLeft - 1;
+
+                        guessCountDiv.innerHTML = guessLeft;
+
+
+                    }
+                }
+
+
+
+                //Win 
+                if(letterBank.length === words[randWord].length){
+
+                    //add wins
+                    wins++
+
+                    //log win
+                    var winCountDiv = document.getElementById("wins");
+                    winCountDiv.innerHTML = wins;
+
+                    //restart
+                    hangeManDiv.innerHTML = "";
+                    randWord = Math.floor(Math.random() * words.length) + 0;
+                    hideHangman();
+
+                    //new word
                     hangeManDiv.innerHTML = combineArraySameLine(hangManViewWord);
 
+                    //set letters to ""
+                    correctLetters = "", incorrectLetters = "", letterBank = "";
 
-                }
-
-                //if incorrect
-                if (findLetter < 0){
-
-                    //log incorrect letters
-                    incorrectLetters[incorrectLetters.length] = letter;
-
-                    //display incorrect letters guessed
-                    var correctGuessDiv = document.getElementById("letters-guessed");
-                    correctGuessDiv.innerHTML = combineArraySameLine(incorrectLetters);
-
-                    //decrease letters guessed
-                    guessLeft = guessLeft - 1;
-                    var guessCountDiv = document.getElementById("guesses-remaining");
+                    //reset guesses
+                    guessLeft = 15;
                     guessCountDiv.innerHTML = guessLeft;
 
+                    correctGuessDiv.innerHTML = "_";
+
 
                 }
-                
-                //Win 
-                if(correctLetters.length === words[randWord]){
-                    
-                    //log win
+
+                //if loss
+                if(guessLeft === 0){
                     
                     //restart
-                                        
-                    
+                    randWord = Math.floor(Math.random() * words.length) + 0;
+                    hangeManDiv.innerHTML = "";
+                    hideHangman();
+
+                    //new word
+                    hangeManDiv.innerHTML = combineArraySameLine(hangManViewWord);
+
+                    //set letters to ""
+                    correctLetters = "", incorrectLetters = "";
+
+                    //reset guesses
+                    guessLeft = 15;
+                    guessCountDiv.innerHTML = guessLeft;
+
+                    correctGuessDiv.innerHTML = "_";
                 }
+                
+                console.log(words[randWord])
 
             }
 
