@@ -1,311 +1,76 @@
 <!doctype html>
 <html lang="en-us">
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Hangman Streetfighter</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <meta charset="UTF-8">
+  <title>Hangman Streetfighter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-        <!--        Bootstrap v4-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">    
+  <!--        Bootstrap v4-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-        <!--style sheet-->
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <!-- Bootstrap v3-->
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+  <!--style sheet-->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <!-- Bootstrap v3-->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
 
-        <!--implementing jQuery-->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <!--implementing jQuery-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</head>
 
-
-
-    </head>
-
-    <body>
+<body>
 
 
-        <div id="main-container" class="container">
+  <div id="main-container" class="container">
 
-            <div class="row justify-content-center">
-                <h1>Hangeman</h1>
-            </div>
-            <!imag>
-            <div class="row justify-content-center">
-                <img src="images/sfv-logo.png" class="auth-image img-fluid rounded m-md-3" alt="Matt Gohr">     
-            </div>
+    <div class="row justify-content-center">
+      <h1>Hangeman</h1>
+    </div>
+    <!imag>
+    <div class="row justify-content-center">
+      <img src="images/sfv-logo.png" class="auth-image img-fluid rounded m-md-3" alt="Matt Gohr">
+    </div>
 
-            <!main content>
-            <div class="row justify-content-center">
+    <!--main content-->
+    <div class="row justify-content-center">
 
-                <!right picture>
-                <div class="col-4 border2" id="result-picture-section">
-                    <div class="col-md-11 justify-content-center logo">
+      <!right picture>
+      <div class="col-4 border2" id="result-picture-section">
+        <div class="col-md-11 justify-content-center logo">
 
-                        <img src="images/Chunrender.png" class="player-image img-fluid rounded m-md-3">
+          <img src="images/Chunrender.png" class="player-image img-fluid rounded m-md-3">
 
-                    </div>
-                </div>
-                <div class="col-4 border2" id="hangman-main-section">
-                    <div class="row">
-                        <div class="game-container col-12" id="hangman-section">
-                            <p class="text-center">Press any key to get start guessing!</p>
-
-                            <p class="text-center">Wins: <span id="wins">0</span></p>
-
-                            <p class="text-center">Current Word</p>
-
-                            <p class="text-center" id="hangman-word-placeholder">_ _ _ _ _ _ _ _</p>
-
-                            <p class="text-center">Number of Guesses Remaining</p>
-
-                            <p class="text-center" id="guesses-remaining">15</p>
-
-                            <p class="text-center">Letters Already Guessed</p>
-
-                            <p class="text-center" id="letters-guessed">_</p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+      </div>
+      <div class="col-4 border2" id="hangman-main-section">
+        <div class="row">
+          <div class="game-container col-12" id="hangman-section">
+            <p class="text-center">Press any key to get start guessing!</p>
 
-        <script>
+            <p class="text-center">Wins: <span id="wins">0</span></p>
 
-            //create player array: you can add as many words to the list as you want.
-            var words = ["dhalsim", "ryu", "guile", "akuma", "sagat"];
+            <p class="text-center">Current Word</p>
 
-            //wins
-            var wins = document.getElementById("wins");
+            <p class="text-center" id="hangman-word-placeholder">_ _ _ _ _ _ _ _</p>
 
-            //change innter html to number
-            //                var wins.innerHTML
+            <p class="text-center">Number of Guesses Remaining</p>
 
-            //words guessed
-            var guessWord = document.getElementById("guess-word-placeholder");
+            <p class="text-center" id="guesses-remaining">15</p>
 
-            //letters guessed
-            var lettersGuessed = document.getElementById("letters-guessed");
+            <p class="text-center">Letters Already Guessed</p>
 
-            //random word in array index
-            var randWord = Math.floor(Math.random() * words.length) + 0;
-            //            var randWord = 0;
+            <p class="text-center" id="letters-guessed">_</p>
 
-            //hangman view word
-            var hangManViewWord = [];
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script text="javascript" src="javascript/scripts.js"></script>
+</body>
 
-            //guesses variable
-            var guessLeft = 15;
-
-            //correct letters log variable
-            var correctLetters = {
-                
-            };
-            var correctLetters = "";              
-            
-            
-
-            //incorrect guesses
-            var incorrectLetters = "";
-            var letterBank = "";
-
-            //wins
-            var wins = 0;
-
-            //divs
-            var hangeManDiv = document.getElementById("hangman-word-placeholder");
-            var correctGuessDiv = document.getElementById("letters-guessed");
-            var guessCountDiv = document.getElementById("guesses-remaining");
-
-
-            //hide hangman word
-            function hideHangman(){
-                hangManViewWord = [];
-
-                //add same number of dahses as there are words
-                for(var i = 0; i < words[randWord].length; i++){
-
-                    //load dashes                    
-                    hangManViewWord[i] = "_ ";
-
-                    //print word for testing
-                    //                    console.log(hangManViewWord);
-
-                }
-
-                //insert into html
-                hangeManDiv.innerHTML = combineArraySameLine(hangManViewWord);
-
-            }
-
-            //comnine elements on the same line
-            function combineArraySameLine(arg1){
-
-                var complete = ""
-
-                //loop through each index and print to
-                for (var i = 0; i < arg1.length; i++){
-
-                    complete = complete + arg1[i];
-
-                }
-                return complete;
-
-            }
-
-            //rewrite hangeman
-            function reWriteHangMan(letterGuessed){
-
-                //check to see if nothing is passed in
-                if (typeof letterGuessed !== "undefined"){
-
-                    //search for letter index in original word 
-                    var i = words[randWord].indexOf(letterGuessed);
-
-                    //replace 
-                    hangManViewWord[i] = letterGuessed + " ";
-
-                }
-            }
-
-            //add wins 
-            function printWins(){
-
-            }
-
-            //load hangman "_"
-            hideHangman();
-
-            //WHEN KEY IS PRESSED -------------------------------------------------------------------
-            document.onkeyup = function(event) {
-
-                // Captures the key press, converts it to lowercase, and saves it to a variable.
-                var letter = String.fromCharCode(event.keyCode).toLowerCase();
-
-//                console.log("letter: "+ letter);
-
-                var findLetter = words[randWord].toLowerCase().search(letter);
-
-//                console.log(findLetter);
-
-                var wrongLetterCheck = letterBank.toLowerCase().search(letter);
-
-                if ( wrongLetterCheck >= 0 ){
-                    //skip
-                }
-
-                else {
-                    
-                    //check to see if true
-                    if (findLetter >= 0){
-
-                        //add to hangman
-                        reWriteHangMan(letter);
-
-                        //add correct letter guess
-                        correctLetters = correctLetters + letter;                 
-
-                        //print new hangman array
-                        hangeManDiv.innerHTML = combineArraySameLine(hangManViewWord);
-
-
-                    }
-
-                    //if incorrect
-                    if (findLetter < 0){
-
-                        //log incorrect letters
-                        incorrectLetters = incorrectLetters + letter;
-                        letterBank = letterBank + letter;
-
-                        //display incorrect letters guessed
-
-                        correctGuessDiv.innerHTML = combineArraySameLine(incorrectLetters);
-
-                        //decrease letters guessed
-                        guessLeft = guessLeft - 1;
-
-                        guessCountDiv.innerHTML = guessLeft;
-
-
-                    }
-                }
-
-
-
-                //Win 
-                if(correctLetters.length === words[randWord].length){
-
-                    //add wins
-                    wins++
-
-                    //log win
-                    var winCountDiv = document.getElementById("wins");
-                    winCountDiv.innerHTML = wins;
-
-                    //restart hangman
-                    hangeManDiv.innerHTML = "";
-                    randWord = Math.floor(Math.random() * words.length) + 0;
-                    hideHangman();
-
-                    //new word
-                    hangeManDiv.innerHTML = combineArraySameLine(hangManViewWord);
-
-                    //set letters to ""
-                    correctLetters = "", incorrectLetters = "", letterBank = "";
-
-                    //reset guesses
-                    guessLeft = 15;
-                    guessCountDiv.innerHTML = guessLeft;
-
-                    correctGuessDiv.innerHTML = "_";
-
-
-                }
-
-                //if loss
-                if(guessLeft === 0){
-                    
-                    //restart
-                    randWord = Math.floor(Math.random() * words.length) + 0;
-                    hangeManDiv.innerHTML = "";
-                    hideHangman();
-
-                    //new word
-                    hangeManDiv.innerHTML = combineArraySameLine(hangManViewWord);
-
-                    //set letters to ""                
-                    correctLetters = "", incorrectLetters = "", letterBank = "";
-                    
-                    //reset letters guessed
-                    guessLeft = 15;
-                    guessCountDiv.innerHTML = guessLeft;
-
-                    correctGuessDiv.innerHTML = "_";
-                }
-                
-                console.log(words[randWord])
-
-            }
-
-            //generate current word cound on first game
-
-            //check to see if letter is in string
-
-            //
-            //                targetDiv.innerHTML = "Hello friends!";
-            //                var newDiv = document.createElement("div");
-            //                newDiv.innerHTML = "A pleasure to meet you!";
-            //
-            //                targetDiv.appendChild(newDiv);
-            //
-            //                // We then apply that CSS to our newDiv.
-            //                newDiv.setAttribute("class", "fancy");
-
-        </script>
-    </body>
 
 </html>
