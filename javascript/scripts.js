@@ -14,8 +14,8 @@ var guessWord = document.getElementById("guess-word-placeholder");
 var lettersGuessed = document.getElementById("letters-guessed");
 
 //random word in array index
-// var randWord = Math.floor(Math.random() * words.length) + 0;
-var randWord = 3;
+var randWord = Math.floor(Math.random() * words.length) + 0;
+// var randWord = 3;
 
 //hangman view word
 var hangManViewWord = [];
@@ -23,16 +23,8 @@ var hangManViewWord = [];
 //guesses variable
 var guessLeft = 15;
 
-//correct letters log variable
-var correctLetters2 = {
-
-};
-
-var correctLetters = "";
-
 //incorrect guesses
-var incorrectLetters = "";
-var letterBank = "";
+var incorrectLetters = "",correctLetters = "", letterBank = "";
 
 //wins
 var wins = 0;
@@ -45,6 +37,7 @@ var guessCountDiv = document.getElementById("guesses-remaining");
 
 //hide hangman word
 function hideHangman() {
+
   hangManViewWord = [];
 
   //add same number of dahses as there are words
@@ -82,22 +75,28 @@ function reWriteHangMan(letterGuessed) {
   if (typeof letterGuessed !== "undefined") {
 
     //search for letter index in original word
-    var x = words[randWord].indexOf(letterGuessed);
+    var x = hangManViewWord.indexOf(letterGuessed + " ");
 
-    var placeholderWord = words[randWord]
-
-    //loop through indexes and fill in all instances of correct letter
-    for (var i = 0; i < placeholderWord.length; i++) {
-      if (letterGuessed === placeholderWord[i]) {
-
-        //replace
-        hangManViewWord[i] = letterGuessed + " ";
-
-        //add to bank
-        correctLetters = correctLetters + letterGuessed;
-      }
+    if (x >= 0) {
+      //skip
     }
 
+    else {
+
+      var placeholderWord = words[randWord]
+
+      //loop through indexes and fill in all instances of correct letter
+      for (var i = 0; i < placeholderWord.length; i++) {
+        if (letterGuessed === placeholderWord[i]) {
+
+          //replace
+          hangManViewWord[i] = letterGuessed + " ";
+
+          //add to bank
+          correctLetters = correctLetters + letterGuessed;
+        }
+      }
+    }
   }
 }
 
@@ -124,25 +123,11 @@ document.onkeyup = function(event) {
     //check to see if true
     if (findLetter >= 0) {
 
-      //add to hangman
+      //add to hidden hangman word
       reWriteHangMan(letter);
-
-      //search the correct letters object to see if it's in there
-
-      //if yes then find index and search replace from there
-
-      //if no then find occurance and replace.
-
-
-      //add correct letter guess
-      // correctLetters = correctLetters + letter;
-
-      //add to correct 2 the letter and indexOf
-      // correctLetters
 
       //print new hangman array
       hangeManDiv.innerHTML = combineArraySameLine(hangManViewWord);
-
 
     }
 
@@ -154,14 +139,13 @@ document.onkeyup = function(event) {
       letterBank = letterBank + letter;
 
       //display incorrect letters guessed
-
       correctGuessDiv.innerHTML = combineArraySameLine(incorrectLetters);
 
       //decrease letters guessed
       guessLeft = guessLeft - 1;
 
+      //print guesses left
       guessCountDiv.innerHTML = guessLeft;
-
 
     }
   }
@@ -222,17 +206,3 @@ document.onkeyup = function(event) {
   console.log(words[randWord])
 
 }
-
-//generate current word cound on first game
-
-//check to see if letter is in string
-
-//
-//                targetDiv.innerHTML = "Hello friends!";
-//                var newDiv = document.createElement("div");
-//                newDiv.innerHTML = "A pleasure to meet you!";
-//
-//                targetDiv.appendChild(newDiv);
-//
-//                // We then apply that CSS to our newDiv.
-//                newDiv.setAttribute("class", "fancy");
